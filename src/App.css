@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.loginform{
+  margin:5rem;
+  padding: 5rem;
+  width:35rem;
+  height: auto;
+}

@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import Forgotpassword from "./Components/Forgotpassword";
+import Verification from "./Components/Verification";
+import Changepassword from "./Components/Changepassword";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/forgotpassword" element={<Forgotpassword />} />
+        <Route path="/verification" element={<Verification />} />
+        <Route path="/changepassword" element={<Changepassword />} />
+      </Routes>
     </div>
   );
+  function ProtectedRoute({ children }) {
+    const token = localStorage.getItem("token");
+    return token ? (
+      <div>{children}</div>
+    ) : (
+      <div>
+        "Unauthorized Entry
+        <Navigate replace to="/" />
+      </div>
+    );
+  }
 }
 
 export default App;
