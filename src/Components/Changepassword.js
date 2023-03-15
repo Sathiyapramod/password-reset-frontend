@@ -6,26 +6,28 @@ function Changepassword() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [NewPassword, setPassword] = useState("");
-  async function changePassword(){
+  async function changePassword() {
+    if (username == null || NewPassword == null)
+      alert("Enter Valid Credentials !!!!!");
+    else {
       const newCredentials = {
         username,
-        NewPassword
-      }
+        NewPassword,
+      };
       const getData = await fetch(`${API}/password/changepassword`, {
-        method:"POST",
+        method: "POST",
         body: JSON.stringify(newCredentials),
-        headers:{
-          "content-type":"application/json"
-        }
-      })
-      if(getData.status == 400 || getData.status == 401){
-        console.log("error");
-      }
-      else{
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      if (getData.status == 400 || getData.status == 401) console.log("error");
+      else {
         const result = await getData.json();
         // console.log(result);
         navigate("/");
       }
+    }
   }
   return (
     <div>
@@ -57,7 +59,12 @@ function Changepassword() {
             />
           </div>
         </div>
-        <button className="btn btn-outline-primary" onClick={()=>changePassword()}>Change Password</button>
+        <button
+          className="btn btn-outline-primary"
+          onClick={() => changePassword()}
+        >
+          Change Password
+        </button>
       </div>
     </div>
   );
