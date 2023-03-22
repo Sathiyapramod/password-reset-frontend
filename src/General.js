@@ -1,3 +1,4 @@
-// export const API = "https://password-reset-theta.vercel.app";
-// export const API = "http://localhost:4000";
-export const API = "https://password-reset-rw4e.onrender.com";
+export const API = "http://localhost:4000";
+// export const API = "https://url-shortener-backend-a7h5.onrender.com";
+
+export const frontEndURL = "http://localhost:3000";

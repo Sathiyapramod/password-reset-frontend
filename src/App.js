@@ -6,6 +6,7 @@ import Forgotpassword from "./Components/Forgotpassword";
 import Verification from "./Components/Verification";
 import Changepassword from "./Components/Changepassword";
 import "./App.css";
+import URLShortener from "./Components/URLShortener";
 
 function App() {
   return (
@@ -21,12 +22,21 @@ function App() {
             </ProtectedRoute>
           }
         />
+        {/* <Route
+          path="/home/createURL"
+          element={
+            <ProtectedRoute>
+              <URLShortener />
+            </ProtectedRoute>
+          }
+        /> */}
         <Route path="/forgotpassword" element={<Forgotpassword />} />
-        <Route path="/verification" element={<Verification />} />
+        <Route path="/verification/:id" element={<Verification />} />
         <Route path="/changepassword" element={<Changepassword />} />
       </Routes>
     </div>
   );
+  
   function ProtectedRoute({ children }) {
     const token = localStorage.getItem("token");
     return token ? (

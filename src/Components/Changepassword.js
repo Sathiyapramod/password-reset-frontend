@@ -21,10 +21,10 @@ function Changepassword() {
           "content-type": "application/json",
         },
       });
-      if (getData.status == 400 || getData.status == 401) console.log("error");
+      if (getData.status === 401) console.log("error");
       else {
         const result = await getData.json();
-        // console.log(result);
+        console.log(result); 
         navigate("/");
       }
     }

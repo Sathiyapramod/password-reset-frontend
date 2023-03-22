@@ -11,20 +11,19 @@ function Login() {
       username,
       password,
     };
-    console.log(newLogin);
-    const attemptLogin = await fetch(`${API}/password/signin`, {
+
+    const attemptLogin = await fetch(`${API}/url/signin`, {
       method: "POST",
       body: JSON.stringify(newLogin),
       headers: {
-        "content-type": "application/json",
+        "Content-type": "application/json",
       },
     });
     if (attemptLogin.status === 401) {
-      alert("Invalid Credentials !! ");
+      alert("Invalid Credentials !!");
       navigate("/");
     } else {
       const result = await attemptLogin.json();
-      // console.log(result);
       localStorage.setItem("token", result.token);
       navigate("/home");
     }

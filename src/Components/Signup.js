@@ -6,19 +6,21 @@ function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+
   async function makeSignup() {
     const newUser = {
-      username, password,email 
+      username, password,firstname,lastname 
     }
-    const signupData = await fetch(`${API}/password/signup`, {
+    const signupData = await fetch(`${API}/url/signup`, {
       method:"POST",
       body:JSON.stringify(newUser),
       headers:{
         "content-type":"application/json"
       }
     });
-    if(signupData.status === 400)
+    if(signupData.status === 401)
       console.log("error");
     else {
       const result = await signupData.json();
@@ -60,10 +62,18 @@ function Signup() {
           </div>
           <div className="row mx-auto align-items-center">
             <div className="col-4">
-              <label className="form-label">Email Id</label>
+              <label className="form-label">Firstname</label>
             </div>
             <div className="col-8">
-              <input type="email" className="form-control me-2" onChange={(event)=>setEmail(event.target.value)}/>
+              <input type="email" className="form-control me-2" onChange={(event)=>setFirstname(event.target.value)}/>
+            </div>
+          </div>
+          <div className="row mx-auto align-items-center">
+            <div className="col-4">
+              <label className="form-label">Lastname</label>
+            </div>
+            <div className="col-8">
+              <input type="email" className="form-control me-2" onChange={(event)=>setLastname(event.target.value)}/>
             </div>
           </div>
           <div>

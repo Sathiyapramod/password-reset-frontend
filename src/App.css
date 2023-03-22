@@ -42,3 +42,15 @@
   width:35rem;
   height: auto;
 }
+.card{
+  width:18rem;
+
+}
+.dashboard{
+  display: flex;
+  flex-direction: row;
+  gap:5rem;
+  justify-content: center;
+  align-items: center;
+}
+
